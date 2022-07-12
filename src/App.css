@@ -1,0 +1,14 @@
+:root {
+  --primary-font: "Comfortaa", cursive;
+}
+.app {
+  font-family: var(--primary-font);
+}
+.Weather-app {
+  background-color: #e8cbb4;
+  border: 4px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 450px;
+  margin: 10px auto;
+}
