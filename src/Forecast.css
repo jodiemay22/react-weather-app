@@ -1,0 +1,28 @@
+.projected-forecast {
+  background: white;
+  margin-bottom: 15px;
+  border-radius: 25px;
+}
+.projected-day-element {
+  text-align: start;
+}
+.projected-day-element ul {
+  margin-top: 20px;
+}
+.projected-day {
+  font-weight: bold;
+  font-size: 15px;
+  padding-top: px;
+}
+.projected-description {
+  font-size: 12px;
+}
+.projected-temp {
+  font-size: 25px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+}
+.projected-icon {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

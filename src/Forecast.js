@@ -1,4 +1,6 @@
 import React from "react";
+import WeatherIcon from "./WeatherIcon.js";
+import "./Forecast.css";
 
 export default function Forecast() {
   return (
@@ -13,7 +15,9 @@ export default function Forecast() {
               </ul>
             </div>
             <div className="col-2 projected-temp">17°</div>
-            <i className="col-3 fa-solid fa-sun projected-icon"></i>
+            <div className="col-3 projected-icon">
+              <WeatherIcon code="02d" size="70" />
+            </div>
           </div>
         </div>
       </div>

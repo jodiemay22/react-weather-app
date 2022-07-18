@@ -41,11 +41,11 @@ export default function UnitConversion(props) {
         <ul className="col-5 forecast-details">
           <li>
             Feels Like: {""}
-            {props.feelsLike} °
+            {props.feelsLike}°
           </li>
           <li>
             Humidity: {""}
-            {props.humidity} %
+            {props.humidity}%
           </li>
           <li>
             Wind Speed: {""}
