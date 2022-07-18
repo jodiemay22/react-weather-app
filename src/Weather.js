@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Weather.css";
 import FormattedDate from "./FormattedDate.js";
 import WeatherInfo from "./WeatherInfo.js";
@@ -8,19 +8,33 @@ import Forecast from "./Forecast.js";
 export default function Weather(props) {
   const [weatherdata, setWeatherdata] = useState({ loading: false });
   const [city, setCity] = useState(props.defaultCity);
+  const [colour, setColour] = useState("#e8cbb4");
 
-  useEffect(() => {
-    const backgroundColour = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue("--default-colour");
-    console.log(backgroundColour);
-  }, []);
+  function handleColourChange() {
+    let temperature = props.temperature;
 
-  function setColour(backgroundColour) {
-    document.documentElement.style.setProperty(
-      "--default-colour",
-      backgroundColour
-    );
+    const temperatureColours = {
+      veryHot: "#bc2525",
+      hot: "#ff0000",
+      warm: "#fdb44b",
+      cool: "#00bbf0",
+      cold: "#005792",
+      veryCold: "#00204a",
+    };
+
+    if (temperature >= 30) {
+      setColour(temperatureColours.veryHot);
+    } else if (temperature >= 20 && temperature < 30) {
+      setColour(temperatureColours.hot);
+    } else if (temperature >= 15 && temperature < 20) {
+      setColour(temperatureColours.warm);
+    } else if (temperature >= 10 && temperature < 15) {
+      setColour(temperatureColours.cool);
+    } else if (temperature >= 5 && temperature < 10) {
+      setColour(temperatureColours.cold);
+    } else if (temperature < 5) {
+      setColour(temperatureColours.veryCold);
+    }
   }
 
   function handleresponse(response) {
@@ -39,7 +53,7 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
       city: response.data.name,
     });
-    setColour();
+    handleColourChange();
   }
 
   function handleSubmit(event) {
@@ -60,7 +74,7 @@ export default function Weather(props) {
 
   if (weatherdata.loading) {
     return (
-      <div className="Weather-app">
+      <div className="Weather-app" style={{ backgroundColor: { colour } }}>
         <div className="row justify-content-between">
           <div className=" date col-5 pt-3 pb-3">
             <FormattedDate date={weatherdata.date} />
