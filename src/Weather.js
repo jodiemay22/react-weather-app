@@ -1,14 +1,27 @@
 import axios from "axios";
-import React, { useState } from "react";
-import styles from "./Weather.module.css";
+import React, { useState, useEffect } from "react";
+import "./Weather.css";
 import FormattedDate from "./FormattedDate.js";
 import WeatherInfo from "./WeatherInfo.js";
 import Forecast from "./Forecast.js";
-import TemperatureColours from "./TemperatureColours";
 
 export default function Weather(props) {
   const [weatherdata, setWeatherdata] = useState({ loading: false });
   const [city, setCity] = useState(props.defaultCity);
+
+  useEffect(() => {
+    const backgroundColour = getComputedStyle(
+      document.documentElement
+    ).getPropertyValue("--default-colour");
+    console.log(backgroundColour);
+  }, []);
+
+  function setColour(backgroundColour) {
+    document.documentElement.style.setProperty(
+      "--default-colour",
+      backgroundColour
+    );
+  }
 
   function handleresponse(response) {
     setWeatherdata({
@@ -26,6 +39,7 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
       city: response.data.name,
     });
+    setColour();
   }
 
   function handleSubmit(event) {
@@ -46,11 +60,7 @@ export default function Weather(props) {
 
   if (weatherdata.loading) {
     return (
-      <TemperatureColours
-        className="Weather-app"
-        temp={weatherdata.temperature}
-        style={styles["Weather-app"]}
-      >
+      <div className="Weather-app">
         <div className="row justify-content-between">
           <div className=" date col-5 pt-3 pb-3">
             <FormattedDate date={weatherdata.date} />
@@ -67,7 +77,7 @@ export default function Weather(props) {
         </div>
         <WeatherInfo data={weatherdata} />
         <Forecast coordinates={weatherdata.coordinates} />
-      </TemperatureColours>
+      </div>
     );
   } else {
     searchCity();

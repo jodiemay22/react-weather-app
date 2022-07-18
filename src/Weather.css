@@ -1,5 +1,8 @@
+:root {
+  --default-colour: #e8cbb4;
+}
 .Weather-app {
-  background-color: #e8cbb4;
+  background-color: var(--default-colour);
   border: 4px;
   border-radius: 25px;
   text-align: center;
