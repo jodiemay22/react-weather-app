@@ -1,5 +1,6 @@
 import React from "react";
 import WeatherIcon from "./WeatherIcon.js";
+import "./Forecast.css";
 
 export default function ForecastDay(props) {
   function descriptionData() {
@@ -26,14 +27,14 @@ export default function ForecastDay(props) {
     return days[day];
   }
   return (
-    <div>
+    <div className="row">
       <div className="col-7 projected-day-element">
         <ul>
-          <li className="projected-day">Monday</li>
-          <li className="projected-description">{descriptionData}</li>
+          <li className="projected-day">{day()}</li>
+          <li className="projected-description">{descriptionData()}</li>
         </ul>
       </div>
-      <div className="col-2 projected-temp">{temperatureData}</div>
+      <div className="col-2 projected-temp">{temperatureData()}</div>
       <div className="col-3 projected-icon">
         <WeatherIcon iconCode={props.data.weather[0].icon} size={70} />
       </div>
