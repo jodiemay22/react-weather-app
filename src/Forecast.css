@@ -16,6 +16,7 @@
 }
 .projected-description {
   font-size: 12px;
+  text-transform: capitalize;
 }
 .projected-temp {
   font-size: 25px;
