@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import "./Weather.css";
+import styles from "./Weather.module.css";
 import FormattedDate from "./FormattedDate.js";
 import WeatherInfo from "./WeatherInfo.js";
 import Forecast from "./Forecast.js";
+import TemperatureColours from "./TemperatureColours";
 
 export default function Weather(props) {
   const [weatherdata, setWeatherdata] = useState({ loading: false });
@@ -45,7 +46,11 @@ export default function Weather(props) {
 
   if (weatherdata.loading) {
     return (
-      <div className="Weather-element">
+      <TemperatureColours
+        className="Weather-app"
+        temp={weatherdata.temperature}
+        style={styles["Weather-app"]}
+      >
         <div className="row justify-content-between">
           <div className=" date col-5 pt-3 pb-3">
             <FormattedDate date={weatherdata.date} />
@@ -62,7 +67,7 @@ export default function Weather(props) {
         </div>
         <WeatherInfo data={weatherdata} />
         <Forecast coordinates={weatherdata.coordinates} />
-      </div>
+      </TemperatureColours>
     );
   } else {
     searchCity();
