@@ -10,16 +10,14 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [colour, setColour] = useState("#e8cbb4");
 
-  function handleColourChange() {
-    let temperature = props.temperature;
-
+  function handleColourChange(temperature) {
     const temperatureColours = {
-      veryHot: "#bc2525",
-      hot: "#ff0000",
-      warm: "#fdb44b",
-      cool: "#00bbf0",
-      cold: "#005792",
-      veryCold: "#00204a",
+      veryHot: "#E65100",
+      hot: "#FF9800",
+      warm: "#FFCC80",
+      cool: "#E1F5FE",
+      cold: "#81D4FA",
+      veryCold: "#03A9F4",
     };
 
     if (temperature >= 30) {
@@ -53,7 +51,7 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
       city: response.data.name,
     });
-    handleColourChange();
+    handleColourChange(Math.round(response.data.main.temp));
   }
 
   function handleSubmit(event) {
@@ -74,7 +72,7 @@ export default function Weather(props) {
 
   if (weatherdata.loading) {
     return (
-      <div className="Weather-app" style={{ backgroundColor: { colour } }}>
+      <div className="Weather-app" style={{ backgroundColor: colour }}>
         <div className="row justify-content-between">
           <div className=" date col-5 pt-3 pb-3">
             <FormattedDate date={weatherdata.date} />
