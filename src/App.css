@@ -4,3 +4,6 @@
 .app {
   font-family: var(--primary-font);
 }
+footer {
+  text-align: center;
+}

@@ -21,7 +21,7 @@ export default function Forecast(props) {
       <div className="Forecast">
         <div className="row justify-content-center">
           {forecastdata.map(function (dailyForecast, index) {
-            if (index < 5) {
+            if (index >= 1 && index <= 5) {
               return (
                 <div className="col-10 projected-forecast" key={index}>
                   <ForecastDay data={dailyForecast} />
