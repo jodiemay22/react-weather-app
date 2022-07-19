@@ -3,6 +3,9 @@
   margin-bottom: 15px;
   border-radius: 25px;
 }
+.projected-container {
+  border-radius: 25px;
+}
 .projected-day-element {
   text-align: start;
 }
