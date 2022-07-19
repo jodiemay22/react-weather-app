@@ -5,6 +5,8 @@
 }
 .projected-container {
   border-radius: 25px;
+  border: solid;
+  border-color: black;
 }
 .projected-day-element {
   text-align: start;
