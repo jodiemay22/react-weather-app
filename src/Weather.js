@@ -74,10 +74,10 @@ export default function Weather(props) {
     return (
       <div className="Weather-app" style={{ backgroundColor: colour }}>
         <div className="row justify-content-between">
-          <div className=" date col-5 pt-3 pb-3">
+          <div className=" date col-sm-5 pt-3 pb-3">
             <FormattedDate date={weatherdata.date} />
           </div>
-          <form className="search-engine col-7" onSubmit={handleSubmit}>
+          <form className="search-engine col-sm-7" onSubmit={handleSubmit}>
             <input
               type="search"
               placeholder="Search a city"
@@ -87,8 +87,14 @@ export default function Weather(props) {
             />
           </form>
         </div>
-        <WeatherInfo data={weatherdata} />
-        <Forecast coordinates={weatherdata.coordinates} />
+        <div className="row">
+          <div className="col-sm-6">
+            <WeatherInfo data={weatherdata} />
+          </div>
+          <div className="col-sm-6">
+            <Forecast coordinates={weatherdata.coordinates} />
+          </div>
+        </div>
       </div>
     );
   } else {

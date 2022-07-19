@@ -66,7 +66,7 @@ export default function ForecastDay(props) {
       </div>
       <div className="col-2 projected-temp">{temperatureData()}</div>
       <div className="col-3 projected-icon">
-        <WeatherIcon iconCode={props.data.weather[0].icon} size={70} />
+        <WeatherIcon iconCode={props.data.weather[0].icon} size={60} />
       </div>
     </div>
   );
