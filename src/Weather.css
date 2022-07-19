@@ -8,6 +8,7 @@
 }
 .date {
   font-size: 10px;
+  font-weight: bold;
 }
 .search-engine {
   padding-bottom: 20px;
@@ -20,11 +21,13 @@
   padding-top: 15px;
   padding-bottom: 15px;
   font-size: 20px;
+  font-weight: bold;
 }
 .weather-description {
   text-align: center;
   font-size: 18px;
   text-transform: uppercase;
+  font-weight: bold;
 }
 ul {
   padding: 0px;
@@ -49,4 +52,5 @@ li {
   padding-top: 20px;
   font-size: 12px;
   text-align: center;
+  font-weight: 600;
 }
