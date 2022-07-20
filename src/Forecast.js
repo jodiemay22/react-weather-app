@@ -6,6 +6,32 @@ import "./Forecast.css";
 export default function Forecast(props) {
   const [loaded, setLoaded] = useState(false);
   const [forecastdata, setForecastdata] = useState(null);
+  const [colour, setColour] = useState("#e8cbb4");
+
+  function handleColourChange(temperature) {
+    const temperatureColours = {
+      veryHot: "#F57F17",
+      hot: "#F9A825",
+      warm: "#FBC02D",
+      cool: "#E1F5FE",
+      cold: "#81D4FA",
+      veryCold: "#03A9F4",
+    };
+
+    if (temperature >= 30) {
+      setColour(temperatureColours.veryHot);
+    } else if (temperature >= 20 && temperature < 30) {
+      setColour(temperatureColours.hot);
+    } else if (temperature >= 15 && temperature < 20) {
+      setColour(temperatureColours.warm);
+    } else if (temperature >= 10 && temperature < 15) {
+      setColour(temperatureColours.cool);
+    } else if (temperature >= 5 && temperature < 10) {
+      setColour(temperatureColours.cold);
+    } else if (temperature < 5) {
+      setColour(temperatureColours.veryCold);
+    }
+  }
 
   useEffect(() => {
     setLoaded(false);
@@ -14,6 +40,7 @@ export default function Forecast(props) {
   function handleForecastResponse(response) {
     setForecastdata(response.data.daily);
     setLoaded(true);
+    handleColourChange(response.data.daily[0].temp.max);
   }
 
   if (loaded) {
@@ -24,7 +51,10 @@ export default function Forecast(props) {
             if (index >= 1 && index <= 5) {
               return (
                 <div className="col-10 projected-forecast" key={index}>
-                  <ForecastDay data={dailyForecast} />
+                  <ForecastDay
+                    data={dailyForecast}
+                    temperatureColours={colour}
+                  />
                 </div>
               );
             } else {

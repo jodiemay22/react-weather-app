@@ -12,9 +12,9 @@ export default function Weather(props) {
 
   function handleColourChange(temperature) {
     const temperatureColours = {
-      veryHot: "#E65100",
-      hot: "#FF9800",
-      warm: "#FFCC80",
+      veryHot: "#F57F17",
+      hot: "#F9A825",
+      warm: "#FBC02D",
       cool: "#E1F5FE",
       cold: "#81D4FA",
       veryCold: "#03A9F4",
