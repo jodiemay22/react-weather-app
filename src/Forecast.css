@@ -1,18 +1,14 @@
 .projected-forecast {
-  background: white;
   margin-bottom: 15px;
   border-radius: 25px;
-}
-.projected-container {
   border-radius: 25px;
   border: solid;
   border-color: black;
 }
-.projected-day-element {
-  text-align: start;
-}
-.projected-day-element ul {
+
+.projected-container ul {
   margin-top: 20px;
+  text-align: start;
 }
 .projected-day {
   font-weight: bold;

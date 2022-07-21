@@ -6,32 +6,15 @@ import "./Forecast.css";
 export default function Forecast(props) {
   const [loaded, setLoaded] = useState(false);
   const [forecastdata, setForecastdata] = useState(null);
-  const [colour, setColour] = useState("#e8cbb4");
 
-  function handleColourChange(temperature) {
-    const temperatureColours = {
-      veryHot: "#F57F17",
-      hot: "#F9A825",
-      warm: "#FBC02D",
-      cool: "#E1F5FE",
-      cold: "#81D4FA",
-      veryCold: "#03A9F4",
-    };
-
-    if (temperature >= 30) {
-      setColour(temperatureColours.veryHot);
-    } else if (temperature >= 20 && temperature < 30) {
-      setColour(temperatureColours.hot);
-    } else if (temperature >= 15 && temperature < 20) {
-      setColour(temperatureColours.warm);
-    } else if (temperature >= 10 && temperature < 15) {
-      setColour(temperatureColours.cool);
-    } else if (temperature >= 5 && temperature < 10) {
-      setColour(temperatureColours.cold);
-    } else if (temperature < 5) {
-      setColour(temperatureColours.veryCold);
-    }
-  }
+  const temperatureColours = {
+    veryHot: "#F57F17",
+    hot: "#F9A825",
+    warm: "#FBC02D",
+    cool: "#E1F5FE",
+    cold: "#81D4FA",
+    veryCold: "#03A9F4",
+  };
 
   useEffect(() => {
     setLoaded(false);
@@ -40,7 +23,6 @@ export default function Forecast(props) {
   function handleForecastResponse(response) {
     setForecastdata(response.data.daily);
     setLoaded(true);
-    handleColourChange(response.data.daily[0].temp.max);
   }
 
   if (loaded) {
@@ -49,12 +31,39 @@ export default function Forecast(props) {
         <div className="row justify-content-center">
           {forecastdata.map(function (dailyForecast, index) {
             if (index >= 1 && index <= 5) {
+              let temperatureColour = "";
+              if (dailyForecast.temp.max >= 30) {
+                temperatureColour = temperatureColours.veryHot;
+              } else if (
+                dailyForecast.temp.max >= 20 &&
+                dailyForecast.temp.max < 30
+              ) {
+                temperatureColour = temperatureColours.hot;
+              } else if (
+                dailyForecast.temp.max >= 15 &&
+                dailyForecast.temp.max < 20
+              ) {
+                temperatureColour = temperatureColours.warm;
+              } else if (
+                dailyForecast.temp.max >= 10 &&
+                dailyForecast.temp.max < 15
+              ) {
+                temperatureColour = temperatureColours.cool;
+              } else if (
+                dailyForecast.temp.max >= 5 &&
+                dailyForecast.temp.max < 10
+              ) {
+                temperatureColour = temperatureColours.cold;
+              } else if (dailyForecast.temp.max < 5) {
+                temperatureColour = temperatureColours.veryCold;
+              }
               return (
-                <div className="col-10 projected-forecast" key={index}>
-                  <ForecastDay
-                    data={dailyForecast}
-                    temperatureColours={colour}
-                  />
+                <div
+                  className="col-10 projected-forecast"
+                  key={index}
+                  style={{ backgroundColor: temperatureColour }}
+                >
+                  <ForecastDay data={dailyForecast} />
                 </div>
               );
             } else {

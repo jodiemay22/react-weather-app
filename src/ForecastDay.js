@@ -28,16 +28,11 @@ export default function ForecastDay(props) {
   }
 
   return (
-    <div
-      className="row projected-container"
-      style={{ backgroundColor: props.temperatureColours }}
-    >
-      <div className="col-7 projected-day-element">
-        <ul>
-          <li className="projected-day">{day()}</li>
-          <li className="projected-description">{descriptionData()}</li>
-        </ul>
-      </div>
+    <div className="row projected-container">
+      <ul className="col-7">
+        <li className="projected-day">{day()}</li>
+        <li className="projected-description">{descriptionData()}</li>
+      </ul>
       <div className="col-2 projected-temp">{temperatureData()}</div>
       <div className="col-3 projected-icon">
         <WeatherIcon iconCode={props.data.weather[0].icon} size={60} />
